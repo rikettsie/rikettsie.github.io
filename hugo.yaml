@@ -1,0 +1,86 @@
+baseURL: https://rikettsie.github.io/
+languageCode: en-us
+title: Enrico Fusto
+theme: PaperMod
+paginate: 10
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: dev
+  title: Enrico Fusto
+  description: "Enrico's hacks and works"
+  keywords: [Blog, Portfolio]
+  author: Enrico Fusto
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowReadingTime: false
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  ShowWordCount: false
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  hideFooter: true
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: false
+  tocopen: false
+
+  assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "<link / abs url>"
+    favicon16x16: "<link / abs url>"
+    favicon32x32: "<link / abs url>"
+    apple_touch_icon: "<link / abs url>"
+    safari_pinned_tab: "<link / abs url>"
+
+  socialIcons:
+    - name: GitHub
+      url: https://www.github.com/rikettsie
+    - name: LinkedIn
+      url: https://www.linkedin.com/in/enrico-fusto
+
+  profileMode:
+    enabled: true
+    title: Software Engineer
+    subtitle: curious learner, interested in web technologies, distributed systems and algorithms
+    imageUrl: "/images/enrico.jpg"
+    imageTitle: "me"
+    imageWidth: 200 # custom size
+    imageHeight: 200 # custom size
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+menu:
+  main:
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 30
