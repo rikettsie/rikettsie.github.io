@@ -7,8 +7,8 @@ summary: "How BAO makes BLAKE3 hashes useful for streaming: verifying data witho
 ---
 
 Content addressability means an object's address *is* its hash.
-For example you ask for `bafybeig...`, you get exactly bytes referenced
-by that hash and any deviation is immediatly detectable.
+For example you ask for `af1349b9f5f9a1a6a...`,
+you get exactly the bytes this hash points to and any deviation is immediately detectable.
 
 The interesting engineering problem is verifying a *stream*
 of bytes *as they arrive*, chunk by chunk, without buffering the whole
