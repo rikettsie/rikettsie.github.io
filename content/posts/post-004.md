@@ -51,7 +51,7 @@ At 1% false positives, each element costs ~9.6 bits — roughly 1.2 bytes
 regardless of key size. A hash set for 100 million SHA-256 URLs would
 need ~3 GB; the equivalent Bloom filter needs ~120 MB.
 
-## What you lose
+## What's not covered
 
 - **No deletion** in the basic structure. A deleted element might clear
   bits shared with other elements, causing false negatives. To support
@@ -68,9 +68,50 @@ need ~3 GB; the equivalent Bloom filter needs ~120 MB.
 
 For the use case I had to tackle, none of these were a problem. 
 
+## My solution
+
+For this problem I used [`pybloomfiltermmap3`](https://github.com/prashnts/pybloomfiltermmap3),
+a Python library that backs the bit array with a memory-mapped file — which means
+the filter can be persisted across restarts and isn't constrained by available RAM alone.
+The log was read as a stream through a **Python generator**, keeping file
+memory flat regardless of file size.
+For each URL, the filter answered my initial question in constant time;
+unseen URLs were written to an output file and added to the filter.
+
+The filter is the only data structure that grows, roughly reching
+~120 MB for 100 million URLs, well within budget and orders of magnitude cheaper than a hash set.
+
+```python
+from collections.abc import Generator
+from pathlib import Path
+
+from pybloomfilter import BloomFilter
+
+
+def stream_urls(log_path: Path) -> Generator[str, None, None]:
+  with open(log_path) as f:
+    for line in f:
+      fields = line.split()
+      yield fields[1]  # position of URL token in the line
+
+
+def deduplicate_urls(log_path: Path, out_path: Path) -> None:
+  # Initialize the Bloom filter with:
+  # - how many expected elements,
+  # - the desired false-positive rate (1%)
+  # - path to the memory-mapped file backing the bit array
+  bf = BloomFilter(100_000_000, 0.01, "urls.bloom")
+
+  with open(out_path, "w") as out:
+    for url in stream_urls(log_path):
+        if url not in bf:
+          bf.add(url)
+          out.write(url + "\n")
+```
+
 ## Code refs
 
-- [jedisct1/rust-bloom-filter](https://github.com/jedisct1/rust-bloom-filter) — clean Rust implementation using SipHash, by Frank Denis
+- [prashnts/pybloomfiltermmap3](https://github.com/prashnts/pybloomfiltermmap3) — Python Bloom filter backed by a memory-mapped file
 - [RocksDB — bloom_impl.h](https://github.com/facebook/rocksdb/blob/main/util/bloom_impl.h) — production Bloom filter used per SSTable
 
 ## Bibliography
