@@ -74,6 +74,10 @@ This means:
   connection can survive via a **connection migration** leveraging this ID.
 - You can attempt multiple paths simultaneously and promote whichever
   succeeds first without restarting the handshake.
+- QUIC collapses the transport and TLS 1.3 crypto handshakes into **1 RTT**
+  (versus 2 RTTs for TCP + TLS). Since hole punching often involves
+  multiple retries, a faster handshake directly reduces the latency cost
+  of each failed attempt. Resumed sessions can are even faster, converging in **0-RTT**.
 
 ## iroh's approach
 
