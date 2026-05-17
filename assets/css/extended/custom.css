@@ -1,0 +1,5 @@
+.post-content pre {
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+    margin-right: -2rem;
+}
