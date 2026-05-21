@@ -16,7 +16,7 @@ whether to serve a resource to a remote peer. I needed an access control model t
 was simple to reason about, did not require a central authority, and could plug into
 iroh's existing identity model cleanly.
 
-That library is [iroh-rings](https://crates.io/crates/iroh-rings).
+That library is [iroh-rings](https://github.com/rikettsie/iroh-rings).
 
 ## The ring model
 
@@ -149,7 +149,8 @@ multiple streams over a single connection, `/iroh-rings/1` can coexist with othe
 protocols — iroh-blobs, custom application protocols — on the same connection without
 any extra work.
 
-## Code refs
+## Refs
 
-- [iroh-rings on crates.io](https://crates.io/crates/iroh-rings)
-- [iroh-rings on docs.rs](https://docs.rs/iroh-rings/latest/iroh_rings/)
+<p><img src="/images/icons/github.svg" class="brand-icon"> GitHub repo: <a href="https://github.com/rikettsie/iroh-rings">https://github.com/rikettsie/iroh-rings</a></p>
+<p><img src="/images/icons/rust.svg" class="brand-icon"> Crate: <a href="https://crates.io/crates/iroh-rings">https://crates.io/crates/iroh-rings</a></p>
+<p><img src="/images/icons/docsdotrs.svg" class="brand-icon"> Docs: <a href="https://docs.rs/iroh-rings/latest/iroh_rings/">https://docs.rs/iroh-rings/latest/iroh_rings/</a></p>
