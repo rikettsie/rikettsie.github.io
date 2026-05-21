@@ -64,6 +64,11 @@ params:
     imageWidth: 200 # custom size
     imageHeight: 200 # custom size
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 outputs:
   home:
     - HTML

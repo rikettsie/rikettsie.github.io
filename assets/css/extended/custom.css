@@ -1,3 +1,15 @@
+.brand-icon {
+    display: inline;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+[data-theme="dark"] .brand-icon {
+    filter: invert(1);
+}
+
 .post-content pre {
     width: calc(100% + 4rem);
     margin-left: -2rem;
