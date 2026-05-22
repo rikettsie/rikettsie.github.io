@@ -1,5 +1,6 @@
 ---
 title: "BAO: verified streaming over content-addressed blobs"
+slug: "bao-verified-streaming"
 date: 2026-03-28
 draft: false
 tags: ["blake3", "content-addressable", "streaming", "iroh"]

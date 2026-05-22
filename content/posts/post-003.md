@@ -1,5 +1,6 @@
 ---
 title: "External merge sort: sorting datasets that don't fit in RAM"
+slug: "external-merge-sort"
 date: 2025-05-18
 draft: false
 tags: ["sorting", "algorithms", "data-structures", "performance"]

@@ -1,5 +1,6 @@
 ---
 title: "The beauty of Kademlia: the XOR distance"
+slug: "kademlia-xor-distance"
 date: 2023-07-10
 draft: false
 tags: ["distributed-systems", "p2p", "kademlia"]

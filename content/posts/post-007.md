@@ -1,5 +1,6 @@
 ---
 title: "Why encrypted protocols need three layers to stay in sync"
+slug: "encrypted-protocols-three-layers"
 date: 2026-04-09
 draft: false
 tags: ["wire", "protocol", "bytes", "frame-detection", "byte-stuffing", "encryption"]

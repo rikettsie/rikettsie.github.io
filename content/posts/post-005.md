@@ -1,5 +1,6 @@
 ---
 title: "NAT traversal and hole punching: from UDP to QUIC with iroh"
+slug: "nat-traversal-hole-punching-iroh"
 date: 2025-11-08
 draft: false
 tags: ["hole-punching", "iroh", "NAT-traversal", "QUIC"]

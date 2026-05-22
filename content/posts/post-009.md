@@ -1,5 +1,6 @@
 ---
 title: "ringdrop: composing iroh, iroh-blobs, and iroh-rings into a P2P file drop"
+slug: "ringdrop-p2p-file-drop"
 date: 2026-05-21
 draft: false
 tags: ["rust", "iroh", "p2p", "iroh-rings", "ringdrop", "architecture"]

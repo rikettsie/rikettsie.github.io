@@ -1,5 +1,6 @@
 ---
 title: "iroh-rings: ring-based access control for P2P resources"
+slug: "iroh-rings-p2p-access-control"
 date: 2026-05-15
 draft: false
 tags: ["rust", "iroh", "p2p", "access-control", "iroh-rings"]

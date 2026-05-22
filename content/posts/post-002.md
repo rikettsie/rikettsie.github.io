@@ -1,5 +1,6 @@
 ---
 title: "The Signal protocol: X3DH vs PQXDH, and the Double Ratchet"
+slug: "signal-x3dh-pqxdh-double-ratchet"
 date: 2023-10-20
 draft: false
 tags: ["cryptography", "signal", "post-quantum"]

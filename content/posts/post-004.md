@@ -1,5 +1,6 @@
 ---
 title: "Bloom filters: probabilistic membership at scale"
+slug: "bloom-filters"
 date: 2025-08-25
 draft: false
 tags: ["bloom-filter", "probabilistic", "data-structures", "rust"]
