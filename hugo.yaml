@@ -52,12 +52,17 @@ params:
 
   profileMode:
     enabled: true
-    title: Software Engineer
-    subtitle: curious learner, interested in web technologies, distributed systems and algorithms
+    title: Enrico Fusto
+    subtitle: curious learner, software engineer
     imageUrl: "/images/enrico.jpg"
     imageTitle: "me"
     imageWidth: 200 # custom size
     imageHeight: 200 # custom size
+    buttons:
+      - name: Posts
+        url: /posts/
+      - name: Tags
+        url: /tags/
 
 markup:
   goldmark:
