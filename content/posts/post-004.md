@@ -4,7 +4,7 @@ slug: "bloom-filters"
 date: 2025-08-25
 draft: false
 tags: ["bloom-filter", "probabilistic", "data-structures", "rust"]
-summary: "How I used a Bloom filter to check membership across 100 million URLs without blowing up RAM — and why a hash set wouldn't cut it."
+summary: "How to use a Bloom filter to check membership across 100 million URLs without blowing up RAM — and why a hash set wouldn't cut it."
 ---
 
 I recently had to parse a huge structured log file containing more than
@@ -69,7 +69,9 @@ need ~3 GB; the equivalent Bloom filter needs ~120 MB.
 
 For the use case I had to tackle, none of these were a problem. 
 
-## My solution
+## Implemented solutions
+
+### In Python
 
 For this problem I used [`pybloomfiltermmap3`](https://github.com/prashnts/pybloomfiltermmap3),
 a Python library that backs the bit array with a memory-mapped file — which means
@@ -110,9 +112,46 @@ def deduplicate_urls(log_path: Path, out_path: Path) -> None:
           out.write(url + "\n")
 ```
 
+### In Rust
+
+Edit [May 24, 2026]: adding an "a posteriori" implementation for this use-case in Rust, with `fastbloom`, a crate I've recently discovered:
+
+```rust
+use std::fs::File;
+use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::path::Path;
+
+use fastbloom::BloomFilter;
+
+fn stream_urls(log_path: &Path) -> impl Iterator<Item = String> {
+    BufReader::new(File::open(log_path).expect("failed to open log"))
+        .lines()
+        .filter_map(|line| {
+            let line = line.ok()?;
+            Some(line.split_whitespace().nth(1)?.to_owned())
+        })
+}
+
+fn deduplicate_urls(log_path: &Path, out_path: &Path) {
+    let mut bf = BloomFilter::with_false_pos(0.01).expected_items(100_000_000);
+    let mut out = BufWriter::new(File::create(out_path).expect("failed to create output"));
+
+    for url in stream_urls(log_path) {
+        if !bf.contains(&url) {
+            bf.insert(&url);
+            writeln!(out, "{url}").expect("failed to write");
+        }
+    }
+}
+```
+
+One notable difference between Python `pybloomfiltermmap3` and Rust `fastbloom` is that the latter lives in memory, it has no mmap persistence. If the process die, you must start over.
+
+
 ## Code refs
 
 - [prashnts/pybloomfiltermmap3](https://github.com/prashnts/pybloomfiltermmap3) — Python Bloom filter backed by a memory-mapped file
+- [tomtomwombat/fastbloom](https://github.com/tomtomwombat/fastbloom)
 - [RocksDB — bloom_impl.h](https://github.com/facebook/rocksdb/blob/main/util/bloom_impl.h) — production Bloom filter used per SSTable
 
 ## Bibliography
