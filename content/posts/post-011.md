@@ -1,5 +1,5 @@
 ---
-title: "Annotating ClickHouse-connect layer by layer: mypy, Copilot, and what the architecture reveals"
+title: "Annotating ClickHouse-connect layer by layer"
 slug: "clickhouse-connect-dbapi-annotations"
 date: 2026-06-23
 draft: false
